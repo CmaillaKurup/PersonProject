@@ -50,10 +50,10 @@ namespace PersonProject.Controllers
 
         public void AddSession()
         {
-            var myComplexObject = new PersonModel();
-            HttpContext.Session.SetObjectAsJson("Test", myComplexObject);
+            //var myComplexObject = new PersonModel();
+            //HttpContext.Session.SetObjectAsJson("Test", myComplexObject);
 
-            HttpContext.Session.GetObjectFromJson<PersonModel>("Test");
+            //HttpContext.Session.GetObjectFromJson<PersonModel>("Test");
 
         }
     }
