@@ -1,4 +1,7 @@
-﻿@{
+﻿@model PersonProject.Models.ViewModels.PageContentModel
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor httpContextAccessor;
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +9,16 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+
+@using (Html.BeginForm("AddPerson", "Home"))
+{
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+        <button>Commit</button>
+    </form>
+}
