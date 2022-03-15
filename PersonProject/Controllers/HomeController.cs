@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace PersonProject.Controllers
 {
     public class HomeController : Controller
@@ -25,28 +26,31 @@ namespace PersonProject.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
         
-        public IEnumerable<PersonModel> AddPerson(string firstName, string lastname)
+        public IActionResult AddPerson(string firstName, string lastname)
         {
-            return Enumerable.Range(1, 1).Select(index => new PersonModel(firstName, lastname)
+            Debug.WriteLine("hejhej");
+
+            //List<PersonModel> perons = new List<PersonModel>();
+
+            //perons.Add(new PersonModel() { Name = firstName, Lastname = lastname });
+            
+            var temp = Enumerable.Range(1, 1).Select(index => new PersonModel(firstName, lastname)
             {
                 Name = firstName,
                 Lastname = lastname
             }).ToArray();
+
+            //HttpContext.Session.SetObjectAsJson("Test", temp);
+            //HttpContext.Session.GetObjectFromJson<PersonModel>("Test");
+            
+            return Index();
         }
-        
 
         public void AddSession()
         {

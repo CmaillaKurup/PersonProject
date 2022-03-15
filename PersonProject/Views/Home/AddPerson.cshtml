@@ -1,4 +1,4 @@
-﻿@model PersonProject.Models.ViewModels.PageContentModel
+@model PersonProject.Models.ViewModels.PageContentModel
 @using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor httpContextAccessor;
 @{
@@ -13,14 +13,7 @@
 <div class="text-center">
     @using (Html.BeginForm("AddPerson", "Home"))
     {
-        <form>
-            <label for="fname">First name:</label><br>
-            <input type="text" id="firstname" name="firstname"><br>
-            <label for="lname">Last name:</label><br>
-            <input type="text" id="lastname" name="lastname">
-            <button type="submit">Commit</button>
-        </form>
+        <h1 class="display-4">@Model.Person.First().Name</h1>
         
-       
     }   
 </div>

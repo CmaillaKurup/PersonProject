@@ -25,10 +25,13 @@ namespace PersonProject
         {
             services.AddControllersWithViews();
             // Add MVC services to the services container.
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            //services.AddMvc();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
-            services.AddSession();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
             services.AddHttpContextAccessor();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +56,7 @@ namespace PersonProject
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -60,13 +64,6 @@ namespace PersonProject
 
             // IMPORTANT: This session call MUST go before UseMvc()
             app.UseSession();
-            // Add MVC to the request pipeline.
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }
