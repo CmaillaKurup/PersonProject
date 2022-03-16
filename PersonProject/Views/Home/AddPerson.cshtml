@@ -11,9 +11,10 @@
 </div>
 
 <div class="text-center">
-    @using (Html.BeginForm("AddPerson", "Home"))
+    @foreach (var pers in @ViewBag.Person)
     {
-        <p>Hej</p>
-        
-    }   
+        <li>
+            @pers
+        </li>
+    }
 </div>
