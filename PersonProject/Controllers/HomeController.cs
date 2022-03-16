@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PersonProject.Models;
 using Microsoft.AspNetCore.Http;
-using System.Linq;
-using System;
-using System.Collections;
-using PersonProject.Models.ViewModels;
 using System.Collections.Generic;
 
 namespace PersonProject.Controllers
@@ -25,7 +21,7 @@ namespace PersonProject.Controllers
         
         public IActionResult Index()
         {
-            
+            HttpContext.Session.SetString("Test", "This is My Session!");
             return View();
         }
         
@@ -43,36 +39,8 @@ namespace PersonProject.Controllers
                 Name = firstname,
                 Lastname = lastname
             });
-
-            PageContentModel pageContentsPerson = new PageContentModel
-            {
-                Person = person
-            };
-
-
-            var first = new List<string>
-            {
-                firstname
-            };
-            var last = new List<string>
-            {
-                firstname
-            };
-
-
-            //ViewData["Person"] = person;
-            ViewBag.Person = first;
-
-            return View();
+            ViewBag.Message = HttpContext.Session.GetString("Test");
+            return View(person);
         }
     }
 }
-/*
-var temp = Enumerable.Range(1, 1).Select(index => new PersonModel(firstname, lastname)
-{
-    Name = firstname,
-    Lastname = lastname
-}).ToList();
-*/
-//HttpContext.Session.SetObjectAsJson("Test", temp);
-//HttpContext.Session.GetObjectFromJson<PersonModel>("Test");   

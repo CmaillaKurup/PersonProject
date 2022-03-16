@@ -1,4 +1,4 @@
-@model PersonProject.Models.ViewModels.PageContentModel
+@model IEnumerable<PersonProject.Models.PersonModel>
 @using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor _httpContextAccessor;
 @{
@@ -11,10 +11,11 @@
 </div>
 
 <div class="text-center">
-    @foreach (var pers in @ViewBag.Person)
+
+    @foreach (var i in Model)
     {
-        <li>
-            @pers
-        </li>
+        <p>@i.Name @i.Lastname</p>
     }
+
+    @ViewBag.Message
 </div>
