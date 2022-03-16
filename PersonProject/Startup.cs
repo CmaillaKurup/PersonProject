@@ -28,7 +28,7 @@ namespace PersonProject
             //services.AddMvc();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(1);
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             services.AddHttpContextAccessor();
             services.AddMvc();
@@ -62,7 +62,7 @@ namespace PersonProject
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // IMPORTANT: This session call MUST go before UseMvc()
+            //Enable Session.
             app.UseSession();
         }
     }

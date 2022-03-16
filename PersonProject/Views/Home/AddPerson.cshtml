@@ -1,8 +1,8 @@
 @model PersonProject.Models.ViewModels.PageContentModel
 @using Microsoft.AspNetCore.Http;
-@inject IHttpContextAccessor httpContextAccessor;
+@inject IHttpContextAccessor _httpContextAccessor;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Add Person";
 }
 
 <div class="text-center">
@@ -13,7 +13,7 @@
 <div class="text-center">
     @using (Html.BeginForm("AddPerson", "Home"))
     {
-        <h1 class="display-4">@Model.Person.First().Name</h1>
+        <p>Hej</p>
         
     }   
 </div>

@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PersonProject.Models;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 namespace PersonProject.Controllers
 {
@@ -32,33 +31,18 @@ namespace PersonProject.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         
-        public IActionResult AddPerson(string firstName, string lastname)
+        public IActionResult AddPerson(string firstname, string lastname)
         {
-            Debug.WriteLine("hejhej");
-
-            //List<PersonModel> perons = new List<PersonModel>();
-
-            //perons.Add(new PersonModel() { Name = firstName, Lastname = lastname });
-            
-            var temp = Enumerable.Range(1, 1).Select(index => new PersonModel(firstName, lastname)
+            var temp = Enumerable.Range(1, 1).Select(index => new PersonModel(firstname, lastname)
             {
-                Name = firstName,
+                Name = firstname,
                 Lastname = lastname
             }).ToArray();
 
             //HttpContext.Session.SetObjectAsJson("Test", temp);
-            //HttpContext.Session.GetObjectFromJson<PersonModel>("Test");
+            //HttpContext.Session.GetObjectFromJson<PersonModel>("Test");   
             
             return Index();
-        }
-
-        public void AddSession()
-        {
-            //var myComplexObject = new PersonModel();
-            //HttpContext.Session.SetObjectAsJson("Test", myComplexObject);
-
-            //HttpContext.Session.GetObjectFromJson<PersonModel>("Test");
-
         }
     }
 }
